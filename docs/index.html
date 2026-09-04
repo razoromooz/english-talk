@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
+<title>English Talk â€” ط¢ظ…ظˆط²ط´ ظ…ع©ط§ظ„ظ…ظ‡ ط§ظ†ع¯ظ„غŒط³غŒ</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+
+<!-- طµظپط­ظ‡ ط®ط§ظ†ظ‡ -->
+<div id="page-home" class="page active">
+  <div class="appbar">
+    <div class="row">
+      <div>
+        <h1>English Talk ًں‡¬ًں‡§</h1>
+        <div class="sub">ط¢ظ…ظˆط²ط´ ع¯ط§ظ…â€Œط¨ظ‡â€Œع¯ط§ظ… ظ…ع©ط§ظ„ظ…ظ‡ ط§ظ†ع¯ظ„غŒط³غŒ â€” ط´ظ†غŒط¯ظ† ظˆ ع¯ظپطھظ†</div>
+      </div>
+      <button class="icon-btn" id="install-btn" style="display:none" title="ظ†طµط¨">ًں“¥</button>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h2>ط§ط² طµظپط± طھط§ ظ…ع©ط§ظ„ظ…ظ‡طŒ<br>ظپظ‚ط· ط¨ط§ غ±غ°غ° ط¯ط±ط³!</h2>
+    <p>ظˆط§عکظ‡â€Œظ‡ط§ + ط¹ط¨ط§ط±ط§طھ + ط¯غŒط§ظ„ظˆع¯ + طھظ…ط±غŒظ† ع¯ظپطھط§ط± + ط¢ط²ظ…ظˆظ† + ظ…ع©ط§ظ„ظ…ظ‡ ط¯ظˆط·ط±ظپظ‡. ظ‡ظ…ظ‡ ط±ط§ ظ‚ط¯ظ…â€Œط¨ظ‡â€Œظ‚ط¯ظ… ط¨ط§ طھظˆط¶غŒط­ ظپط§ط±ط³غŒ غŒط§ط¯ ظ…غŒâ€Œع¯غŒط±غŒ â€” ط§ط² ط³ظ„ط§ظ…â€Œع©ط±ط¯ظ† طھط§ ع¯ط±ط§ظ…ط± ظ¾غŒط´ط±ظپطھظ‡.</p>
+    <button class="btn-light" id="continue-btn">â–¶ï¸ڈ ط§ط¯ط§ظ…ظ‡ غŒط§ط¯ع¯غŒط±غŒ</button>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat"><div class="num" id="stat-lessons">غ°</div><div class="lbl">ط¯ط±ط³ ع©ط§ظ…ظ„â€Œط´ط¯ظ‡</div></div>
+    <div class="stat"><div class="num" id="stat-words">غ°</div><div class="lbl">ظˆط§عکظ‡ ط¯غŒط¯ظ‡â€Œط´ط¯ظ‡</div></div>
+    <div class="stat"><div class="num" id="stat-quiz">غ°</div><div class="lbl">ط¢ط²ظ…ظˆظ† ظ‚ط¨ظˆظ„غŒ</div></div>
+  </div>
+
+  <div class="sec-title" style="margin:14px 16px 8px">ًں“ڑ ط³ط±ظپطµظ„ ط¯ط±ط³â€Œظ‡ط§</div>
+  <div class="lesson-list" id="lesson-list"></div>
+</div>
+
+<!-- طµظپط­ظ‡ ط¯ط±ط³ -->
+<div id="page-lesson" class="page">
+  <button class="back-btn" id="back-home">â†’ ط¨ط§ط²ع¯ط´طھ</button>
+  <div class="card">
+    <div class="lesson-head">
+      <div class="emoji" id="ls-emoji">ًں‘‹</div>
+      <div>
+        <div class="t" id="ls-title">ط¯ط±ط³</div>
+        <div class="s" id="ls-sub">Lesson 1</div>
+      </div>
+    </div>
+    <div class="intro" id="ls-intro"></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-tab="vocab">ظˆط§عکظ‡â€Œظ‡ط§</button>
+    <button class="tab" data-tab="phrases">ط¹ط¨ط§ط±ط§طھ</button>
+    <button class="tab" data-tab="dialog">ط¯غŒط§ظ„ظˆع¯</button>
+    <button class="tab" data-tab="speak">ع¯ظپطھط§ط± ًںژ¤</button>
+    <button class="tab" data-tab="quiz">ط¢ط²ظ…ظˆظ†</button>
+  </div>
+
+  <div class="tabpane on" id="pane-vocab">
+    <div class="card">
+      <div class="sec-title">ًں”ٹ ط±ظˆغŒ ط¯ع©ظ…ظ‡ ط§ط³ظ¾غŒع©ط± ط¨ط²ظ† ظˆ ط¨ط´ظ†ظˆ</div>
+      <div id="vocab-list"></div>
+    </div>
+  </div>
+
+  <div class="tabpane" id="pane-phrases">
+    <div id="phrases-list"></div>
+  </div>
+
+  <div class="tabpane" id="pane-dialog">
+    <div class="dlg-actions" style="margin-bottom:0">
+      <button class="btn pri" id="dlg-play">â–¶ï¸ڈ ظ¾ط®ط´ ع©ظ„ ط¯غŒط§ظ„ظˆع¯</button>
+      <button class="btn ghost" id="dlg-next">ط¯ط±ط³ ط¨ط¹ط¯غŒ â†گ</button>
+    </div>
+    <div class="card">
+      <div class="sec-title">ًں’¬ <span id="dlg-title">ظ…ع©ط§ظ„ظ…ظ‡</span> <span style="font-size:9px;color:var(--mut)">(ط±ظˆغŒ ظ‡ط± ط¬ظ…ظ„ظ‡ ط¨ط²ظ† طھط§ ظ¾ط®ط´ ط´ظˆط¯)</span></div>
+      <div class="chat" id="dlg-chat"></div>
+    </div>
+  </div>
+
+  <div class="tabpane" id="pane-speak">
+    <div class="card mic-box">
+      <div class="sec-title" style="justify-content:center">ًںژ¤ طھظ…ط±غŒظ† ع¯ظپطھظ†</div>
+      <button class="mic-btn" id="mic-btn">ًںژ™ï¸ڈ</button>
+      <div class="mic-target">
+        <div class="lbl">ط§غŒظ† ط¬ظ…ظ„ظ‡ ط±ط§ ط¨ع¯ظˆ:</div>
+        <div class="txt" id="mic-text">...</div>
+        <button class="speak-btn" id="mic-listen-first" style="margin:8px auto auto; width:auto; padding:6px 14px; font-size:12px; font-family:inherit">ًں”ٹ ط§ظˆظ„ ط¨ط´ظ†ظˆ</button>
+      </div>
+      <div class="mic-status" id="mic-status">ط±ظˆغŒ ط¯ع©ظ…ظ‡ ظ…غŒع©ط±ظˆظپظˆظ† ط¨ط²ظ† ظˆ ط¬ظ…ظ„ظ‡ ط¨ط§ظ„ط§ ط±ط§ ط¨ع¯ظˆ</div>
+      <div class="result-box" id="mic-result">
+        <div class="lbl" style="font-size:10px;color:var(--mut)">ط´ظ†غŒط¯ظ‡ ط´ط¯:</div>
+        <div class="heard" id="mic-heard"></div>
+        <span class="score-badge" id="mic-score"></span>
+      </div>
+      <div class="dlg-actions">
+        <button class="btn ghost" id="mic-prev">ط¬ظ…ظ„ظ‡ ظ‚ط¨ظ„غŒ</button>
+        <button class="btn pri" id="mic-next">ط¬ظ…ظ„ظ‡ ط¨ط¹ط¯غŒ â†گ</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabpane" id="pane-quiz">
+    <div class="card">
+      <div class="quiz-progress" id="quiz-progress"></div>
+      <div id="quiz-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- طµظپط­ظ‡ ظ…ع©ط§ظ„ظ…ظ‡ ط¯ظˆط·ط±ظپظ‡ -->
+<div id="page-talk" class="page">
+  <div class="appbar">
+    <div class="row">
+      <div>
+        <h1>ًں’¬ ظ…ع©ط§ظ„ظ…ظ‡ ط¯ظˆط·ط±ظپظ‡</h1>
+        <div class="sub">ط§ظ¾ ظ†ظ‚ط´ ط·ط±ظپ ظ…ظ‚ط§ط¨ظ„ ط±ط§ ط¨ط§ط²غŒ ظ…غŒâ€Œع©ظ†ط¯ â€” طھظˆ طµط­ط¨طھ ع©ظ†!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-title" style="margin:14px 16px 8px">ًںژ­ ط³ظ†ط§ط±غŒظˆظ‡ط§ ط±ط§ ط§ظ†طھط®ط§ط¨ ع©ظ†</div>
+  <div class="lesson-list" id="conv-list"></div>
+
+  <div id="conv-active" style="display:none">
+    <button class="back-btn" id="conv-back">â†’ ظ‡ظ…ظ‡ ط³ظ†ط§ط±غŒظˆظ‡ط§</button>
+    <div class="conv-head">
+      <div class="conv-info">
+        <span id="conv-emoji" style="font-size:28px"></span>
+        <div>
+          <div class="t" id="conv-title"></div>
+          <div class="s" id="conv-desc"></div>
+        </div>
+      </div>
+      <div class="conv-progress" id="conv-progress"></div>
+    </div>
+    <div class="conv-chat" id="conv-chat"></div>
+    <div class="conv-hint card" id="conv-hint"></div>
+    <div class="conv-actions">
+      <button class="mic-btn" id="conv-mic">ًںژ™ï¸ڈ</button>
+      <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+        <button class="btn pri" id="conv-replay" style="flex:none">ًں”ٹ ط¢ط®ط±غŒظ† ط¬ظ…ظ„ظ‡ ط±ط§ ط¯ظˆط¨ط§ط±ظ‡ ط¨ط´ظ†ظˆ</button>
+        <button class="btn ghost" id="conv-restart" style="flex:none">ًں”„ ط´ط±ظˆط¹ ط¯ظˆط¨ط§ط±ظ‡</button>
+      </div>
+    </div>
+    <div class="mic-status" id="conv-status" style="text-align:center;margin:10px 16px">ط±ظˆغŒ ًںژ™ï¸ڈ ط¨ط²ظ† ظˆ ط¬ظˆط§ط¨ ط¨ط¯ظ‡ â€” غŒط§ ظ¾ط§غŒغŒظ† طھط§غŒظ¾ ع©ظ†</div>
+    <div class="conv-input-row">
+      <input id="conv-input" class="conv-input" type="text" placeholder="...غŒط§ ط§غŒظ†ط¬ط§ ط¨ظ‡ ط§ظ†ع¯ظ„غŒط³غŒ طھط§غŒظ¾ ع©ظ†" autocomplete="off">
+      <button class="btn pri" id="conv-send" style="flex:none;padding:12px 22px">ط§ط±ط³ط§ظ„</button>
+    </div>
+  </div>
+</div>
+
+<!-- طµظپط­ظ‡ ظ¾غŒط´ط±ظپطھ -->
+<div id="page-progress" class="page">
+  <div class="appbar"><h1>ًں“ˆ ظ¾غŒط´ط±ظپطھ ظ…ظ†</h1><div class="sub">ظ†طھغŒط¬ظ‡ طھظ„ط§ط´â€Œظ‡ط§غŒطھ ط±ط§ ط¨ط¨غŒظ†</div></div>
+  <div class="card" id="progress-card"></div>
+  <div class="card about">
+    <div class="sec-title">â™»ï¸ڈ ظ…ط¯غŒط±غŒطھ ط¯ط§ط¯ظ‡â€Œظ‡ط§</div>
+    <button class="btn ghost" id="reset-btn" style="width:100%">ظ¾ط§ع©â€Œع©ط±ط¯ظ† ظ‡ظ…ظ‡ ظ¾غŒط´ط±ظپطھâ€Œظ‡ط§</button>
+  </div>
+</div>
+
+<!-- طµظپط­ظ‡ ط±ط§ظ‡ظ†ظ…ط§ -->
+<div id="page-about" class="page">
+  <div class="appbar"><h1>ًں“– ط±ط§ظ‡ظ†ظ…ط§غŒ ط§ط³طھظپط§ط¯ظ‡</h1><div class="sub">ع†ط·ظˆط± ط§ط² ط§ظ¾ ط¨غŒط´طھط±غŒظ† ط¨ظ‡ط±ظ‡ ط±ط§ ط¨ط¨ط±غŒظ…</div></div>
+  <div class="card about">
+    <p>
+      <b>غ±. ظˆط§عکظ‡â€Œظ‡ط§:</b> ظ‡ط± ظˆط§عکظ‡ ط±ط§ ط¨ط§ ط¯ع©ظ…ظ‡ ًں”ٹ ع†ظ†ط¯ ط¨ط§ط± ط¨ط´ظ†ظˆ ظˆ ط¨ط¹ط¯ ط¨ظ„ظ†ط¯ طھع©ط±ط§ط± ع©ظ†.<br>
+      <b>غ². ط¹ط¨ط§ط±ط§طھ:</b> ط¬ظ…ظ„ظ‡â€Œظ‡ط§ ط±ط§ ط¨ط´ظ†ظˆ ظˆ ط¨ط§ ط¯ع©ظ…ظ‡ آ«طھع©ط±ط§ط± ع©ظ†آ» ظ‡ظ…ط±ط§ظ‡ ط¨ط§ طµط¯ط§ طھظ…ط±غŒظ† ع©ظ†.<br>
+      <b>غ³. ط¯غŒط§ظ„ظˆع¯:</b> ع©ظ„ ظ…ع©ط§ظ„ظ…ظ‡ ط±ط§ ظ¾ط®ط´ ع©ظ†طŒ ط¨ط¹ط¯ ط®ط· ط¨ظ‡ ط®ط· طھع©ط±ط§ط± ع©ظ†.<br>
+      <b>غ´. ع¯ظپطھط§ط±:</b> ط±ظˆغŒ ًںژ™ï¸ڈ ط¨ط²ظ† ظˆ ط¬ظ…ظ„ظ‡ ط±ط§ ط¨ع¯ظˆ â€” ط§ظ¾ طھط´ط®غŒطµ ظ…غŒâ€Œط¯ظ‡ط¯ ط¯ط±ط³طھ ع¯ظپطھظ‡â€Œط§غŒ غŒط§ ظ†ظ‡.<br>
+      <b>غµ. ط¢ط²ظ…ظˆظ†:</b> غµ ط³ط¤ط§ظ„ ظ‡ط± ط¯ط±ط³ ط±ط§ ط¬ظˆط§ط¨ ط¨ط¯ظ‡ط› ط¨ط§ ظ‚ط¨ظˆظ„غŒطŒ ط¯ط±ط³ ط¨ط¹ط¯غŒ ط¨ط§ط² ظ…غŒâ€Œط´ظˆط¯.<br>
+      <b>غ¶. ظ…ع©ط§ظ„ظ…ظ‡ ط¯ظˆط·ط±ظپظ‡:</b> ط¯ط± طھط¨ آ«ظ…ع©ط§ظ„ظ…ظ‡آ» ط³ظ†ط§ط±غŒظˆظ‡ط§غŒ ظˆط§ظ‚ط¹غŒ (ع©ط§ظپظ‡طŒ ط±ط³طھظˆط±ط§ظ†طŒ ظ…طµط§ط­ط¨ظ‡...) ط±ط§ ط§ظ†طھط®ط§ط¨ ع©ظ†. ط§ظ¾ ظ†ظ‚ط´ ط·ط±ظپ ظ…ظ‚ط§ط¨ظ„ ط±ط§ ط¨ط§ط²غŒ ظ…غŒâ€Œع©ظ†ط¯ ظˆ طھظˆ غŒط§ ط¨ط§ ًںژ™ï¸ڈ ظ…غŒع©ط±ظˆظپظˆظ† ط¬ظˆط§ط¨ ظ…غŒâ€Œط¯ظ‡غŒ غŒط§ طھط§غŒظ¾ ظ…غŒâ€Œع©ظ†غŒ. ط¨ط§ ظ‚ط¨ظˆظ„غŒ ط¯ط±ط³â€Œظ‡ط§غŒ ط¨غŒط´طھط±طŒ ط³ظ†ط§ط±غŒظˆظ‡ط§غŒ ط¬ط¯غŒط¯ ط¨ط§ط² ظ…غŒâ€Œط´ظˆظ†ط¯!
+    </p>
+    <div class="warn-box">
+      âڑ ï¸ڈ ط¨ط±ط§غŒ ط´ظ†غŒط¯ظ† طµط¯ط§ظ‡ط§ ط¨ظ„ظ†ط¯ع¯ظˆ ع¯ظˆط´غŒ ط±ظˆط´ظ† ط¨ط§ط´ط¯. طھظ…ط±غŒظ† ع¯ظپطھط§ط± ط¨ظ‡ ط§غŒظ†طھط±ظ†طھ ظˆ ظ…ط¬ظˆط² ظ…غŒع©ط±ظˆظپظˆظ† ظ†غŒط§ط² ط¯ط§ط±ط¯ ظˆ ط¨ظ‡طھط±غŒظ† ط¹ظ…ظ„ع©ط±ط¯ ط±ط§ ط¯ط± Chrome ط¯ط§ط±ط¯. ط¯ط± ظ…ع©ط§ظ„ظ…ظ‡ ط¯ظˆط·ط±ظپظ‡ ط§ع¯ط± ظ…غŒع©ط±ظˆظپظˆظ† ظ†ط¯ط§ط±غŒطŒ ظ…غŒâ€Œطھظˆط§ظ†غŒ ط¬ظˆط§ط¨ ط±ط§ طھط§غŒظ¾ ع©ظ†غŒ.
+    </div>
+  </div>
+  <div class="card about">
+    <div class="sec-title">ًں’، ظ†طµط¨ ط§ظ¾ ط±ظˆغŒ ع¯ظˆط´غŒ</div>
+    <p>ط¯ط± Chrome ط§ظ†ط¯ط±ظˆغŒط¯: ظ…ظ†ظˆ (â‹®) â†گ آ«Add to Home screenآ». ط¯ط± ط¢غŒظپظˆظ†: ط¯ع©ظ…ظ‡ ط§ط´طھط±ط§ع© â†گ آ«Add to Home Screenآ». ط§ظ¾ ظ…ط«ظ„ غŒع© ط§ظ¾ ظˆط§ظ‚ط¹غŒ ط±ظˆغŒ طµظپط­ظ‡ ع¯ظˆط´غŒ ظ†طµط¨ ظ…غŒâ€Œط´ظˆط¯.</p>
+  </div>
+</div>
+
+<!-- ظ†ظˆط§ط± ظ¾ط§غŒغŒظ† -->
+<div class="tabbar">
+  <button class="tb on" data-page="home"><span class="ic">ًںڈ </span>ط®ط§ظ†ظ‡</button>
+  <button class="tb" data-page="talk"><span class="ic">ًں’¬</span>ظ…ع©ط§ظ„ظ…ظ‡</button>
+  <button class="tb" data-page="progress"><span class="ic">ًں“ˆ</span>ظ¾غŒط´ط±ظپطھ</button>
+  <button class="tb" data-page="about"><span class="ic">ًں“–</span>ط±ط§ظ‡ظ†ظ…ط§</button>
+</div>
+
+<script src="static/data/lessons1.js"></script>
+<script src="static/data/lessons2.js"></script>
+<script src="static/data/lessons3.js"></script>
+<script src="static/data/lessons4.js"></script>
+<script src="static/data/lessons5.js"></script>
+<script src="static/data/lessons6.js"></script>
+<script src="static/data/lessons7.js"></script>
+<script src="static/data/lessons8.js"></script>
+<script src="static/data/lessons9.js"></script>
+<script src="static/data/lessons10.js"></script>
+<script src="static/data/lessons11.js"></script>
+<script src="static/data/lessons12.js"></script>
+<script src="static/data/lessons13.js"></script>
+<script src="static/data/lessons14.js"></script>
+<script src="static/data/lessons15.js"></script>
+<script src="static/data/lessons16.js"></script>
+<script src="static/data/lessons17.js"></script>
+<script src="static/data/lessons18.js"></script>
+<script src="static/data/lessons19.js"></script>
+<script src="static/data/lessons20.js"></script>
+<script src="static/data/conversations.js"></script>
+<script src="static/app.js"></script>
+</body>
+</html>

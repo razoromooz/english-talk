@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
+<title>English Talk — آموزش مکالمه انگلیسی</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="icon" href="/icons/icon-192.png">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+<!-- صفحه خانه -->
+<div id="page-home" class="page active">
+  <div class="appbar">
+    <div class="row">
+      <div>
+        <h1>English Talk 🇬🇧</h1>
+        <div class="sub">آموزش گام‌به‌گام مکالمه انگلیسی — شنیدن و گفتن</div>
+      </div>
+      <button class="icon-btn" id="install-btn" style="display:none" title="نصب">📥</button>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h2>از صفر تا مکالمه،<br>فقط با ۱۰۰ درس!</h2>
+    <p>واژه‌ها + عبارات + دیالوگ + تمرین گفتار + آزمون + مکالمه دوطرفه. همه را قدم‌به‌قدم با توضیح فارسی یاد می‌گیری — از سلام‌کردن تا گرامر پیشرفته.</p>
+    <button class="btn-light" id="continue-btn">▶️ ادامه یادگیری</button>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat"><div class="num" id="stat-lessons">۰</div><div class="lbl">درس کامل‌شده</div></div>
+    <div class="stat"><div class="num" id="stat-words">۰</div><div class="lbl">واژه دیده‌شده</div></div>
+    <div class="stat"><div class="num" id="stat-quiz">۰</div><div class="lbl">آزمون قبولی</div></div>
+  </div>
+
+  <div class="sec-title" style="margin:14px 16px 8px">📚 سرفصل درس‌ها</div>
+  <div class="lesson-list" id="lesson-list"></div>
+</div>
+
+<!-- صفحه درس -->
+<div id="page-lesson" class="page">
+  <button class="back-btn" id="back-home">→ بازگشت</button>
+  <div class="card">
+    <div class="lesson-head">
+      <div class="emoji" id="ls-emoji">👋</div>
+      <div>
+        <div class="t" id="ls-title">درس</div>
+        <div class="s" id="ls-sub">Lesson 1</div>
+      </div>
+    </div>
+    <div class="intro" id="ls-intro"></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-tab="vocab">واژه‌ها</button>
+    <button class="tab" data-tab="phrases">عبارات</button>
+    <button class="tab" data-tab="dialog">دیالوگ</button>
+    <button class="tab" data-tab="speak">گفتار 🎤</button>
+    <button class="tab" data-tab="quiz">آزمون</button>
+  </div>
+
+  <div class="tabpane on" id="pane-vocab">
+    <div class="card">
+      <div class="sec-title">🔊 روی دکمه اسپیکر بزن و بشنو</div>
+      <div id="vocab-list"></div>
+    </div>
+  </div>
+
+  <div class="tabpane" id="pane-phrases">
+    <div id="phrases-list"></div>
+  </div>
+
+  <div class="tabpane" id="pane-dialog">
+    <div class="dlg-actions" style="margin-bottom:0">
+      <button class="btn pri" id="dlg-play">▶️ پخش کل دیالوگ</button>
+      <button class="btn ghost" id="dlg-next">درس بعدی ←</button>
+    </div>
+    <div class="card">
+      <div class="sec-title">💬 <span id="dlg-title">مکالمه</span> <span style="font-size:9px;color:var(--mut)">(روی هر جمله بزن تا پخش شود)</span></div>
+      <div class="chat" id="dlg-chat"></div>
+    </div>
+  </div>
+
+  <div class="tabpane" id="pane-speak">
+    <div class="card mic-box">
+      <div class="sec-title" style="justify-content:center">🎤 تمرین گفتن</div>
+      <button class="mic-btn" id="mic-btn">🎙️</button>
+      <div class="mic-target">
+        <div class="lbl">این جمله را بگو:</div>
+        <div class="txt" id="mic-text">...</div>
+        <button class="speak-btn" id="mic-listen-first" style="margin:8px auto auto; width:auto; padding:6px 14px; font-size:12px; font-family:inherit">🔊 اول بشنو</button>
+      </div>
+      <div class="mic-status" id="mic-status">روی دکمه میکروفون بزن و جمله بالا را بگو</div>
+      <div class="result-box" id="mic-result">
+        <div class="lbl" style="font-size:10px;color:var(--mut)">شنیده شد:</div>
+        <div class="heard" id="mic-heard"></div>
+        <span class="score-badge" id="mic-score"></span>
+      </div>
+      <div class="dlg-actions">
+        <button class="btn ghost" id="mic-prev">جمله قبلی</button>
+        <button class="btn pri" id="mic-next">جمله بعدی ←</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabpane" id="pane-quiz">
+    <div class="card">
+      <div class="quiz-progress" id="quiz-progress"></div>
+      <div id="quiz-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- صفحه مکالمه دوطرفه -->
+<div id="page-talk" class="page">
+  <div class="appbar">
+    <div class="row">
+      <div>
+        <h1>💬 مکالمه دوطرفه</h1>
+        <div class="sub">اپ نقش طرف مقابل را بازی می‌کند — تو صحبت کن!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-title" style="margin:14px 16px 8px">🎭 سناریوها را انتخاب کن</div>
+  <div class="lesson-list" id="conv-list"></div>
+
+  <div id="conv-active" style="display:none">
+    <button class="back-btn" id="conv-back">→ همه سناریوها</button>
+    <div class="conv-head">
+      <div class="conv-info">
+        <span id="conv-emoji" style="font-size:28px"></span>
+        <div>
+          <div class="t" id="conv-title"></div>
+          <div class="s" id="conv-desc"></div>
+        </div>
+      </div>
+      <div class="conv-progress" id="conv-progress"></div>
+    </div>
+    <div class="conv-chat" id="conv-chat"></div>
+    <div class="conv-hint card" id="conv-hint"></div>
+    <div class="conv-actions">
+      <button class="mic-btn" id="conv-mic">🎙️</button>
+      <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+        <button class="btn pri" id="conv-replay" style="flex:none">🔊 آخرین جمله را دوباره بشنو</button>
+        <button class="btn ghost" id="conv-restart" style="flex:none">🔄 شروع دوباره</button>
+      </div>
+    </div>
+    <div class="mic-status" id="conv-status" style="text-align:center;margin:10px 16px">روی 🎙️ بزن و جواب بده — یا پایین تایپ کن</div>
+    <div class="conv-input-row">
+      <input id="conv-input" class="conv-input" type="text" placeholder="...یا اینجا به انگلیسی تایپ کن" autocomplete="off">
+      <button class="btn pri" id="conv-send" style="flex:none;padding:12px 22px">ارسال</button>
+    </div>
+  </div>
+</div>
+
+<!-- صفحه پیشرفت -->
+<div id="page-progress" class="page">
+  <div class="appbar"><h1>📈 پیشرفت من</h1><div class="sub">نتیجه تلاش‌هایت را ببین</div></div>
+  <div class="card" id="progress-card"></div>
+  <div class="card about">
+    <div class="sec-title">♻️ مدیریت داده‌ها</div>
+    <button class="btn ghost" id="reset-btn" style="width:100%">پاک‌کردن همه پیشرفت‌ها</button>
+  </div>
+</div>
+
+<!-- صفحه راهنما -->
+<div id="page-about" class="page">
+  <div class="appbar"><h1>📖 راهنمای استفاده</h1><div class="sub">چطور از اپ بیشترین بهره را ببریم</div></div>
+  <div class="card about">
+    <p>
+      <b>۱. واژه‌ها:</b> هر واژه را با دکمه 🔊 چند بار بشنو و بعد بلند تکرار کن.<br>
+      <b>۲. عبارات:</b> جمله‌ها را بشنو و با دکمه «تکرار کن» همراه با صدا تمرین کن.<br>
+      <b>۳. دیالوگ:</b> کل مکالمه را پخش کن، بعد خط به خط تکرار کن.<br>
+      <b>۴. گفتار:</b> روی 🎙️ بزن و جمله را بگو — اپ تشخیص می‌دهد درست گفته‌ای یا نه.<br>
+      <b>۵. آزمون:</b> ۵ سؤال هر درس را جواب بده؛ با قبولی، درس بعدی باز می‌شود.<br>
+      <b>۶. مکالمه دوطرفه:</b> در تب «مکالمه» سناریوهای واقعی (کافه، رستوران، مصاحبه...) را انتخاب کن. اپ نقش طرف مقابل را بازی می‌کند و تو یا با 🎙️ میکروفون جواب می‌دهی یا تایپ می‌کنی. با قبولی درس‌های بیشتر، سناریوهای جدید باز می‌شوند!
+    </p>
+    <div class="warn-box">
+      ⚠️ برای شنیدن صداها بلندگو گوشی روشن باشد. تمرین گفتار به اینترنت و مجوز میکروفون نیاز دارد و بهترین عملکرد را در Chrome دارد. در مکالمه دوطرفه اگر میکروفون نداری، می‌توانی جواب را تایپ کنی.
+    </div>
+  </div>
+  <div class="card about">
+    <div class="sec-title">💡 نصب اپ روی گوشی</div>
+    <p>در Chrome اندروید: منو (⋮) ← «Add to Home screen». در آیفون: دکمه اشتراک ← «Add to Home Screen». اپ مثل یک اپ واقعی روی صفحه گوشی نصب می‌شود.</p>
+  </div>
+</div>
+
+<!-- نوار پایین -->
+<div class="tabbar">
+  <button class="tb on" data-page="home"><span class="ic">🏠</span>خانه</button>
+  <button class="tb" data-page="talk"><span class="ic">💬</span>مکالمه</button>
+  <button class="tb" data-page="progress"><span class="ic">📈</span>پیشرفت</button>
+  <button class="tb" data-page="about"><span class="ic">📖</span>راهنما</button>
+</div>
+
+<script src="/static/data/lessons1.js"></script>
+<script src="/static/data/lessons2.js"></script>
+<script src="/static/data/lessons3.js"></script>
+<script src="/static/data/lessons4.js"></script>
+<script src="/static/data/lessons5.js"></script>
+<script src="/static/data/lessons6.js"></script>
+<script src="/static/data/lessons7.js"></script>
+<script src="/static/data/lessons8.js"></script>
+<script src="/static/data/lessons9.js"></script>
+<script src="/static/data/lessons10.js"></script>
+<script src="/static/data/lessons11.js"></script>
+<script src="/static/data/lessons12.js"></script>
+<script src="/static/data/lessons13.js"></script>
+<script src="/static/data/lessons14.js"></script>
+<script src="/static/data/lessons15.js"></script>
+<script src="/static/data/lessons16.js"></script>
+<script src="/static/data/lessons17.js"></script>
+<script src="/static/data/lessons18.js"></script>
+<script src="/static/data/lessons19.js"></script>
+<script src="/static/data/lessons20.js"></script>
+<script src="/static/data/conversations.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
